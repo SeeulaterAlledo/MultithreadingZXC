@@ -1,14 +1,11 @@
 import kotlin.concurrent.Volatile
 
 object TimerExample {
-    // Флаг для управления таймером
     @Volatile
     private var running = true
 
     @JvmStatic
     fun main(args: Array<String>) {
-        // Поток таймера
-
         val timerThread = Thread(Runnable {
             var seconds = 0
             while (running) {
@@ -24,10 +21,9 @@ object TimerExample {
             println("⏹ Таймер остановлен.")
         })
 
-        // Поток-останавливающий
         val stopperThread = Thread {
             try {
-                Thread.sleep(10000) // Ждём 10 секунд
+                Thread.sleep(10000)
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             }
@@ -35,11 +31,9 @@ object TimerExample {
             println("🛑 Останавливаем таймер...")
         }
 
-        // Запуск потоков
         timerThread.start()
         stopperThread.start()
 
-        // Ждём завершения
         try {
             timerThread.join()
             stopperThread.join()

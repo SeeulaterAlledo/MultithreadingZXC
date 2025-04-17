@@ -26,17 +26,16 @@ object MultiThreadedSort {
             thread.start()
         }
 
-        // Ожидаем завершения всех потоков
+
         for (thread in threads) {
             thread.join()
         }
 
-        // Объединяем и окончательно сортируем
         val merged = mergeAndSort(sortedParts)
         println("Отсортированный массив: " + merged.contentToString())
     }
 
-    // Объединение всех отсортированных частей
+
     fun mergeAndSort(sortedParts: List<IntArray>): IntArray {
         val mergedList: MutableList<Int> = ArrayList()
         for (part in sortedParts) {
@@ -44,7 +43,7 @@ object MultiThreadedSort {
                 mergedList.add(num)
             }
         }
-        Collections.sort(mergedList) // можно заменить на алгоритм слияния для эффективности
+        Collections.sort(mergedList)
 
         // Переводим в массив
         val result = IntArray(mergedList.size)

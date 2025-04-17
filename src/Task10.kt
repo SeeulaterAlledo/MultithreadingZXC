@@ -4,7 +4,7 @@ internal class Fork {
     private val lock = ReentrantLock()
 
     fun pickUp(): Boolean {
-        return lock.tryLock() // Не блокируем поток, если вилка занята
+        return lock.tryLock()
     }
 
     fun putDown() {
@@ -37,8 +37,7 @@ internal class Philosopher(private val id: Int, private val leftFork: Fork?, pri
                     }
                     leftFork.putDown()
                 }
-
-                // Немного подождать, чтобы другие потоки тоже могли захватить вилки
+                
                 sleep((Math.random() * 500).toInt().toLong())
             }
         } catch (e: InterruptedException) {
@@ -59,12 +58,12 @@ object DiningPhilosophers {
             forks[i] = Fork()
         }
 
-        // Инициализация философов
+
         for (i in 0..<numPhilosophers) {
             val leftFork = forks[i]
             val rightFork = forks[(i + 1) % numPhilosophers]
 
-            // Для последнего философа поменять порядок вилок, чтобы избежать deadlock
+
             if (i == numPhilosophers - 1) {
                 philosophers[i] = Philosopher(i, rightFork, leftFork)
             } else {

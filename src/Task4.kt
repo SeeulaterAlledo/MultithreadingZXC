@@ -4,7 +4,6 @@ class BankAccount(initialBalance: Int) {
     var balance = initialBalance
         private set
 
-    // Общий объект для синхронизации на каждый аккаунт
     private val lock = Any()
 
     fun transfer(to: BankAccount, amount: Int) {

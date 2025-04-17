@@ -32,12 +32,12 @@ fun main() {
         thread.start()
     }
 
-    // Ждём завершения всех потоков
+
     for (thread in threads) {
         thread.join()
     }
 
-    // Печатаем результат
+
     println("Результат умножения матриц:")
     for (row in result) {
         println(row.joinToString(" "))

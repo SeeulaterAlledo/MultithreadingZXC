@@ -19,7 +19,7 @@ fun main() {
     val futures: List<Future<String>> = tasks.map { executor.submit(it) }
 
     futures.forEach { future ->
-        println(future.get()) // Ждём и получаем результат
+        println(future.get())
     }
 
     executor.shutdown()

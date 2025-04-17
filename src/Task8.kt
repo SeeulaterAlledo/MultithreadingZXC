@@ -12,7 +12,7 @@ fun main() {
             queue.put(item)
             Thread.sleep(300)
         }
-        queue.put("END") // Специальный маркер завершения
+        queue.put("END")
     }
 
     val consumer = thread {
